@@ -33,6 +33,13 @@ class ViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let detailView = storyboard?.instantiateViewController(withIdentifier: "DetailView") as? DetailViewController {
+            detailView.currentImage = pictures[indexPath.row]
+            navigationController?.pushViewController(detailView, animated: true)
+        }
+    }
+    
     func loadImages() {
         let fm = FileManager.default
         let path = Bundle.main.bundlePath
